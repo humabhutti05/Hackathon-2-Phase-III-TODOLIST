@@ -1,0 +1,31 @@
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# Environment variables
+.env
+.env.local
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# AI / Tool cache
+.specify/cache/
+.gemini/cache/
+.pytests_cache
+sql__app.db
+new_prod.db
+#BACKEND
+history

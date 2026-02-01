@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: "Inter", "Geist Sans", sans-serif;
+
+  /* Sci-Fi Dark Palette */
+  --color-space-black: #050505;
+  --color-void-dark: #0A0A0B;
+  --color-panel: #141416;
+  --color-panel-glass: rgba(20, 20, 22, 0.7);
+
+  /* Accents */
+  --color-neon-green: #39FF14;
+  --color-hologram-blue: #00F0FF;
+  --color-alert-red: #FF2A6D;
+
+  /* Text */
+  --color-text-bright: #FFFFFF;
+  --color-text-dim: #94A3B8;
+
+  /* Effects */
+  --shadow-neon: 0 0 10px rgba(57, 255, 20, 0.3);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+@layer base {
+  body {
+    background-color: #000000;
+    /* Fallback */
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    /* Ensure stacking context */
+  }
+
+  /* Animated Stars Background - Brightened */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20px 30px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(1.5px 1.5px at 40px 70px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(1.5px 1.5px at 50px 160px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0, 0, 0, 0)),
+      radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0, 0, 0, 0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: stars 60s linear infinite;
+    opacity: 0.6;
+    /* Increased opacity for visibility */
+    z-index: 0;
+    /* Move to 0, content will be relative z-10 */
+    pointer-events: none;
+  }
+
+  /* Deep Space Gradient Overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(20, 20, 35, 0.2), #020202 90%);
+    z-index: -1;
+    /* Behind stars */
+  }
+
+  @keyframes stars {
+    0% {
+      background-position: 0 0;
+    }
+
+    100% {
+      background-position: 0 1000px;
+    }
+
+    /* Animate BG position instead of transform for seamless loop */
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #0A0A0B;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-neon-green);
+  }
+}
+
+@layer components {
+
+  /* Sci-Fi Glass Panels - More Transparent */
+  .glass-panel {
+    background-color: rgba(20, 20, 22, 0.4);
+    /* Reduced opacity */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  /* Interactive Modules (Cards) - Glassier */
+  .glass-card {
+    background-color: rgba(30, 30, 35, 0.25);
+    /* More transparent */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Brighter border */
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(57, 255, 20, 0.4);
+    background-color: rgba(30, 30, 35, 0.4);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.15);
+    /* Stronger glow */
+    transform: translateY(-2px);
+  }
+
+  /* Neon Action Buttons */
+  .neon-button {
+    background-color: #39FF14;
+    color: #000000;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 150ms ease-out;
+    border: none;
+  }
+
+  .neon-button:hover {
+    background-color: #32E612;
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .neon-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+  }
+
+  /* Input Fields */
+  .sci-fi-input {
+    background-color: rgba(10, 10, 15, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 200ms;
+    backdrop-filter: blur(4px);
+  }
+
+  .sci-fi-input:focus {
+    border-color: var(--color-neon-green);
+    box-shadow: 0 0 0 1px rgba(57, 255, 20, 0.2), inset 0 0 10px rgba(57, 255, 20, 0.05);
+    outline: none;
+    background-color: rgba(10, 10, 15, 0.8);
+  }
+}
